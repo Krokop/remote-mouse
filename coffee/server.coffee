@@ -29,6 +29,6 @@ io.sockets.on 'connection', (socket)->
 
 	, 500
 
-	socket.on 'movemouse start', (new_direction)->
+	socket.on 'movemouse', (new_direction)->
 		direction = new_direction
 		console.log 'new direction'
