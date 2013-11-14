@@ -8,26 +8,30 @@ server.listen 8083
 app.get '/', (req, res)->
 	res.sendfile __dirname + '/html/index.html'
 
+
+x = 0
+y = 0
+
+direction = "no"
+setInterval ->
+	console.log 'direction', direction
+	if direction is "no" then return no
+
+	if direction is "up" then x = x - 1
+	if direction is "down" then x = x + 1
+	if direction is "left" then y = y - 1
+	if direction is "right" then y = y + 1
+	exec "xdotool mousemove #{y} #{x}", (error, stdout, stderr)->
+		console.log stdout
+
+	, 500
+
 io.sockets.on 'connection', (socket)->
-
-	x = 0
-	y = 0
-
-	direction = "no"
 
 	child = exec 'xdotool getmouselocation', (error, stdout, stderr)->
 		console.log stdout
 
-	setInterval ->
-		if direction is "no" then return no
 
-		if direction is "up" then x = x - 1
-		if direction is "down" then x = x + 1
-		if direction is "left" then y = y - 1
-		if direction is "right" then y = y + 1
-		exec "xdotool mousemove #{y} #{x}"
-
-	, 500
 
 	socket.on 'movemouse', (new_direction)->
 		direction = new_direction
