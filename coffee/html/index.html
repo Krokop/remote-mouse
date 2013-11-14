@@ -1,0 +1,32 @@
+<html>
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect();
+      function movemouse(direction) {
+          socket.emit('movemouse', direction);
+      }
+    </script>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <style>
+        .button {
+            background: #0b97c4;
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            float:left;
+            margin: 5px;;
+        }
+    </style>
+</head>
+<body>
+
+<div class="button" style="margin-left: 35px;" onclick="movemouse('up')">up</div>
+<div style="clear: left;"></div>
+<div class="button" onclick="movemouse('left')"><</div>
+<div class="button" onclick="movemouse('right')">></div>
+<div style="clear: left;"></div>
+<div class="button" style="margin-left: 35px;" onclick="movemouse('down')">down</div>
+
+</body>
+</html>
