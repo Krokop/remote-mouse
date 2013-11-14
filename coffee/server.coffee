@@ -13,14 +13,19 @@ io.sockets.on 'connection', (socket)->
 	x = 0
 	y = 0
 
+	direction = "no"
+
 	child = exec 'xdotool getmouselocation', (error, stdout, stderr)->
 		console.log stdout
 
-	socket.on 'movemouse', (direction)->
-		if direction is "up" then x = x - 5
-		if direction is "down" then x = x + 5
-		if direction is "left" then y = y - 5
-		if direction is "right" then y = y + 5
+	setInterval ->
+		if direction is "up" then x = x - 1
+		if direction is "down" then x = x + 1
+		if direction is "left" then y = y - 1
+		if direction is "right" then y = y + 1
+		exec "xdotool mousemove #{y} #{x}"
 
-		exec "xdotool mousemove #{x} #{y}", (e, so, se)->
-			console.log e, so, se
+	, 500
+
+	socket.on 'movemouse start', (new_direction)->
+		direction = new_direction
