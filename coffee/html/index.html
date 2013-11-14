@@ -21,12 +21,15 @@
 </head>
 <body>
 
-<div class="button" style="margin-left: 35px;" onmousedown="movemouse('up')" onmouseup="movemouse('no')">up</div>
+<div class="button" style="margin-left: 35px;" onclick="movemouse('up')">up</div>
 <div style="clear: left;"></div>
-<div class="button" onmousedown="movemouse('left')" onmouseup="movemouse('no')"><</div>
-<div class="button" onmousedown="movemouse('right')" onmouseup="movemouse('no')">></div>
+<div class="button" onclick="movemouse('left')"><</div>
+<div class="button" onclick="movemouse('right')">></div>
 <div style="clear: left;"></div>
-<div class="button" style="margin-left: 35px;" onmousedown="movemouse('down')" onmouseup="movemouse('no')">down</div>
+<div class="button" style="margin-left: 35px;" onclick="movemouse('down')">down</div>
+<div style="clear: left;"></div>
+<br><br>
+<div class="button" style="width: 50px;" onclick="movemouse('no')">STOP</div>
 
 </body>
 </html>

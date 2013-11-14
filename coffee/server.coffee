@@ -19,6 +19,8 @@ io.sockets.on 'connection', (socket)->
 		console.log stdout
 
 	setInterval ->
+		if direction is "no" then return no
+
 		if direction is "up" then x = x - 1
 		if direction is "down" then x = x + 1
 		if direction is "left" then y = y - 1
@@ -29,3 +31,4 @@ io.sockets.on 'connection', (socket)->
 
 	socket.on 'movemouse start', (new_direction)->
 		direction = new_direction
+		console.log 'new direction'
