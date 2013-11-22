@@ -1,0 +1,28 @@
+@mixin button($direction:none, $margin-left: auto) {
+  background: #0b97c4;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  float:$direction;
+  margin-left: $margin-left;
+  margin-right: auto;
+}
+.button {
+  @include button();
+}
+.box-control {
+  width: 300px;
+  height: 300px;
+}
+.up {
+  @include button($margin-left: auto);
+}
+.left {
+  @include button($direction:right);
+}
+.right {
+  @include button();
+}
+.down {
+  @include button($direction:left);
+}
