@@ -15,22 +15,41 @@ x=0
 y=0
 
 io.sockets.on 'connection', (socket)->
+	x=0
+	y=0
+	socket.on 'i_server', (e) ->
+		back = socket.id
+		socket.emit 'stay_server'
 
-	exec 'xdotool getmouselocation', (error, stdout, stderr)->
-		x = parseInt(stdout.split(' ')[0].slice(2, stdout.length))
-		y = parseInt(stdout.split(' ')[1].slice(2, stdout.length))
-		console.log x, y
+	socket.on 'i_client', (e) ->
+		socket.emit 'stay_client'
 
-
-	socket.on 'movemouse', (new_direction)->
-		direction = new_direction
-		console.log new_direction
-		if direction is "up" then x = x - 20
-		if direction is "down" then x = x + 20
-		if direction is "left" then y = y - 20
-		if direction is "right" then y = y + 20
+	socket.on 'move_mouse', (direction)->
+		dir = direction
+		console.log dir, x, y
+		if dir is "top" and x is not 0 then x = x-20
+		if dir is "left" and y is not 0 then y = y-20
+		if dir is "right" then y = y+20
+		if dir is "down" then x = x+20
 		exec "xdotool mousemove #{y} #{x}", (error, stdout, stderr)->
 			console.log stdout
+
+#
+#	exec 'xdotool getmouselocation', (error, stdout, stderr)->
+#		x = parseInt(stdout.split(' ')[0].slice(2, stdout.length))
+#		y = parseInt(stdout.split(' ')[1].slice(2, stdout.length))
+#		console.log x, y
+#
+#
+#	socket.on 'movemouse', (new_direction)->
+#		direction = new_direction
+#		console.log new_direction
+#		if direction is "up" then x = x - 20
+#		if direction is "down" then x = x + 20
+#		if direction is "left" then y = y - 20
+#		if direction is "right" then y = y + 20
+#		exec "xdotool mousemove #{y} #{x}", (error, stdout, stderr)->
+#			console.log stdout
 
 
 #x = 0

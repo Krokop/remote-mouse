@@ -1,28 +1,103 @@
-@mixin button($direction:none, $margin-left: auto) {
-  background: #0b97c4;
-  border-radius: 5px;
+@mixin arrrow($float: none, $margin-left:0px, $margin-right: 0px) {
   width: 50px;
   height: 50px;
-  float:$direction;
+  margin: 10px;
+  margin-top: 0px;
+  float : $float;
   margin-left: $margin-left;
+  margin-right: $margin-right;
+
+}
+body {
+  position: absolute;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+.server {
+  display: none;
+}
+.client {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  .control {
+    position: relative;
+    max-width: 150px;
+    max-height: 100px;
+    margin-top: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    .left_arrow {
+      @include arrrow($float: left);
+      background: url('/style/left_arrow.png');
+    }
+    .right_arrow {
+      @include arrrow($float: right);
+      background: url('/style/right_arrow.png');
+    }
+    .top_arrow {
+      @include arrrow($margin-right: auto, $margin-left: auto);
+      background: url('/style/top_arrow.png');
+    }
+    .down_arrow {
+      @include arrrow($margin-right: auto, $margin-left: auto);
+      background: url('/style/down_arrow.png');
+    }
+    .click {
+      @include arrrow();
+      background: url('/style/click.png');
+    }
+  }
+}
+.choice {
+  width: 1000px;
   margin-right: auto;
+  margin-left: auto;
+
+  .good_side {
+    margin-top: 200px;
+    background: rgba(219, 205, 193, 0.38);
+    height: 300px;
+    width: 300px;
+    text-align: center;
+  }
+
+  .evil_side {
+    text-align: center;
+    background: rgba(219, 205, 193, 0.38);
+    width: 300px;
+    height: 300px;
+    float: right;
+  }
 }
-.button {
-  @include button();
-}
-.box-control {
-  width: 300px;
-  height: 300px;
-}
-.up {
-  @include button($margin-left: auto);
-}
-.left {
-  @include button($direction:right);
-}
-.right {
-  @include button();
-}
-.down {
-  @include button($direction:left);
-}
+
+//@mixin button($direction:none, $margin-left: auto) {
+//  background: #0b97c4;
+//  border-radius: 5px;
+//  width: 50px;
+//  height: 50px;
+//  float:$direction;
+//  margin-left: $margin-left;
+//  margin-right: auto;
+//}
+//.button {
+//  @include button();
+//}
+//.box-control {
+//  width: 300px;
+//  height: 300px;
+//}
+//.up {
+//  @include button($margin-left: auto);
+//}
+//.left {
+//  @include button($direction:right);
+//}
+//.right {
+//  @include button();
+//}
+//.down {
+//  @include button($direction:left);
+//}
