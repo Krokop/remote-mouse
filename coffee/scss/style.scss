@@ -1,6 +1,6 @@
 @mixin arrrow($float: none, $margin-left:0px, $margin-right: 0px) {
-  width: 50px;
-  height: 50px;
+  width: 128px;
+  height: 128px;
   margin: 10px;
   margin-top: 0px;
   float : $float;
@@ -15,39 +15,105 @@ body {
   height: 100%;
 }
 .server {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: none;
+  .slider {
+    .slide1 {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: red;
+    }
+    .slide2 {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: green;
+    }
+    .slide3 {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: blue;
+    }
+  }
+  .next_slide {
+    position: absolute;
+    right: 0px;
+    bottom: 5px;
+    width: 48px;
+    height: 48px;
+    background: url('/style/next_slide.png');
+    float: left;
+  }
+  .prev_slide {
+    position: absolute;
+    right: 50px;
+    bottom: 5px;
+    width: 48px;
+    height: 48px;
+    background: url('/style/prev_slide.png');
+  }
 }
 .client {
+  overflow: scroll;
   display: none;
   position: absolute;
   width: 100%;
   height: 100%;
   .control {
     position: relative;
-    max-width: 150px;
-    max-height: 100px;
-    margin-top: 100px;
+    max-width: 300px;
+    max-height: 300px;
     margin-right: auto;
     margin-left: auto;
+    .down {
+      @include arrrow($margin-right: auto, $margin-left: auto);
+      background: url('/style/scroll down1.png');
+    }
+    .left {
+      @include arrrow($float: left);
+      background: url('/style/scroll left1.png');
+    }
+    .right {
+      @include arrrow($float: right);
+      background: url('/style/scroll right1.png');
+    }
+    .up {
+      @include arrrow($margin-right: auto, $margin-left: auto);
+      background: url('/style/scroll up1.png');
+    }
+
     .left_arrow {
       @include arrrow($float: left);
-      background: url('/style/left_arrow.png');
+      background: url('/style/left_arrow1.png');
     }
     .right_arrow {
       @include arrrow($float: right);
-      background: url('/style/right_arrow.png');
+      background: url('/style/right_arrow1.png');
     }
     .top_arrow {
       @include arrrow($margin-right: auto, $margin-left: auto);
-      background: url('/style/top_arrow.png');
+      background: url('/style/top_arrow1.png');
     }
     .down_arrow {
       @include arrrow($margin-right: auto, $margin-left: auto);
-      background: url('/style/down_arrow.png');
+      background: url('/style/down_arrow1.png');
     }
     .click {
       @include arrrow();
-      background: url('/style/click.png');
+      background: url('/style/click1.png');
+      float:left;
+    }
+    .stop {
+      @include arrrow();
+      float:right;
+      background: url('/style/stop.png');
     }
   }
 }
